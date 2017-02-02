@@ -57,18 +57,27 @@ body,html{
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
-	font-family: 'helvetica neue';
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body{
-	height: 100%;
-	background: url(img/background_buildings.png) center;
+	background: rgb(70, 104, 145) url(img/background_buildings.png) center;
 	background-size: cover;
 }
+body::before{
+	content: "";
+	display: block;
+	z-index: -1;
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
 .container{
-	width: 50%;
+	width: 70%;
+	max-width: 980px;
 	margin: 0 auto;
 	min-height: 100%;
-	padding: 1em 0;
+	padding: 1em 0 2em;
 }
 .text-center{
 	text-align: center;
@@ -84,8 +93,12 @@ header{
 	    flex-wrap: wrap;
 }
 h1{
-	font-size: 2em;
-	width: 76.6%;
+	font-family: 'Pacifico', cursive;
+	font-size: 2.7em;
+	font-size: 4vw;
+	color: #5629ab;
+	text-shadow: 0 0 20px #e2e2e2;
+	width: 85%;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -94,7 +107,8 @@ h1{
 	justify-content: center;
 }
 .logo{
-	width: 23.3%;
+	width: calc(15% - 2em);
+	margin-left: 2em;
 }
 .logo img{
 	max-width: 100%;
@@ -105,10 +119,11 @@ h1{
 	width: 100%;
 }
 .search{
-	margin-bottom: 1em;
+	margin: 1em 0;
 }
 .search input{
-	width: 40%;
+	width: 30%;
+	min-width: 205px;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 	padding: 0.3em 0 0.3em 1em;
@@ -117,7 +132,8 @@ h1{
 	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
 }
 .search input:focus{
-	width: 60%;
+	width: 50%;
+	min-width: 205px;
 	outline: 0;
 }
 
@@ -128,8 +144,9 @@ h1{
 	        flex: 1;
 	padding: 5%;
 	margin-right: 0.3%;
-	background-color: blue;
-		text-shadow: 0 0 5px rgba(0,0,0, 0.5);
+	background-color: #6262d0;
+	font-size: 1.2em;
+	text-shadow: 0 0 5px rgba(0,0,0, 0.5);
 	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
 	-webkit-transition: font-size 0.7s,opacity 1s, -webkit-box-flex 0.7s;
 	transition: font-size 0.7s,opacity 1s, -webkit-box-flex 0.7s;
@@ -142,12 +159,12 @@ h1{
 	opacity: 0;
 }
 .buttons div:hover{
-	background-color: rgba(255,255,255, 0.2);
+	background-color: rgba(255,255,255, 0.3);
 	-webkit-box-flex: 4;
 	    -ms-flex: 4;
 	        flex: 4;
 	color: white;
-	text-shadow: 0 0 5px rgba(0,0,0, 0.5);
+	text-shadow: 2px 2px 5px rgba(0,0,0, 0.9);
 }
 .buttons div:hover span{
 	display: inline-block;
@@ -158,9 +175,57 @@ h1{
 }
 /* Main */
 main{
-	background-color: rgba(255,255,255, 0.2);
+	background-color: rgba(255,255,255, 0.3);
 }
 /* Footer */
 footer{
 	margin-top: -23px;
+}
+
+@media screen and (max-width: 991px){
+	.container{
+		width: 80%;
+	}
+    h1 {
+    	font-size: 2.3em;
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 767px){
+	.container{
+		width: 95%;
+	}
+    h1 {
+        font-size: 2em;
+        font-size: 6vw;
+    }
+}
+
+@media screen and (max-width: 480px){
+	.logo{
+		display: none;
+	}
+	h1 {
+		width: 100%;
+        font-size: 1.4em;
+        font-size: 7vw;
+    }
+	.buttons{
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+	}
+	.buttons div{
+		margin: 0;
+	}
+    .buttons div:hover{
+    	-webkit-box-flex: 1;
+    	    -ms-flex: 1;
+    	        flex: 1;
+    }
+    footer{
+    	font-size: 0.6em;
+    }
 }
