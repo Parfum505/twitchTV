@@ -70,7 +70,7 @@ body::before{
 	position: absolute;
 	width: 100%;
 	min-height: 100%;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.4);
 }
 .container{
 	width: 70%;
@@ -86,6 +86,9 @@ body::before{
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+}
+.shadow{
+	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
 }
 /* Header */
 header{
@@ -119,63 +122,106 @@ h1{
 	width: 100%;
 }
 .search{
-	margin: 1em 0;
+	margin: 2em 0;
 }
 .search input{
 	width: 30%;
 	min-width: 205px;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
-	padding: 0.3em 0 0.3em 1em;
+	padding: 0.3em 0.3em 0.3em 1em;
+	font-size: 0.7em;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0.3);
 	border-color: transparent;
 	border-radius: 1em;
-	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
 }
 .search input:focus{
 	width: 50%;
 	min-width: 205px;
 	outline: 0;
 }
+	/* Styling placeholder*/
+::-webkit-input-placeholder {color: #656565;}
+::-moz-placeholder          {color: #656565;}/* Firefox 19+ */
+:-moz-placeholder           {color: #656565;}/* Firefox 18- */
+:-ms-input-placeholder{color: #656565;}
+
+input[placeholder]          {text-overflow:ellipsis;}
+input::-moz-placeholder     {text-overflow:ellipsis;}
+input:-moz-placeholder      {text-overflow:ellipsis;}
+input:-ms-input-placeholder {text-overflow:ellipsis;}
+
 
 	/* Buttons*/
 .buttons div{
 	-webkit-box-flex: 1;
 	    -ms-flex: 1;
 	        flex: 1;
-	padding: 5%;
+	padding: 3%;
 	margin-right: 0.3%;
 	background-color: #6262d0;
-	font-size: 1.2em;
+	font-size: 1.3em;
 	text-shadow: 0 0 5px rgba(0,0,0, 0.5);
-	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
-	-webkit-transition: font-size 0.7s,opacity 1s, -webkit-box-flex 0.7s;
-	transition: font-size 0.7s,opacity 1s, -webkit-box-flex 0.7s;
-	transition: flex 0.7s, font-size 0.7s,opacity 1s;
-	transition: flex 0.7s, font-size 0.7s,opacity 1s, -webkit-box-flex 0.7s, -ms-flex 0.7s;
+	-webkit-transition: opacity 1s,-webkit-box-flex 0.7s;
+	transition: opacity 1s,-webkit-box-flex 0.7s;
+	transition: flex 0.7s,opacity 1s;
+	transition: flex 0.7s,opacity 1s,-webkit-box-flex 0.7s,-ms-flex 0.7s;
 	overflow: hidden;
+	position: relative;
 }
-.buttons span{
-	display: none;
+.buttons div span{
+	position: absolute;
 	opacity: 0;
+	-webkit-transform: translateY(-200%);
+	transform: translateY(-200%);
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+	transition: transform 0.5s, -webkit-transform 0.5s;
 }
 .buttons div:hover{
-	background-color: rgba(255,255,255, 0.3);
+	background-color: rgba(255,255,255, 0.4);
+	color: #5629ab;
+	font-weight: bold;
+	text-shadow: 0 0 20px #e2e2e2;
+}
+.buttons .active{
+	background-color: rgba(255,255,255, 0.4);
 	-webkit-box-flex: 4;
 	    -ms-flex: 4;
 	        flex: 4;
-	color: white;
-	text-shadow: 2px 2px 5px rgba(0,0,0, 0.9);
+	color: #5629ab;
+	font-weight: bold;
+	text-shadow: 0 0 20px #e2e2e2;
 }
-.buttons div:hover span{
-	display: inline-block;
+.buttons div.active.channels span{
 	opacity: 1;
+	-webkit-transform: translateY(0);
+	        transform: translateY(0);
+	-webkit-transform: translateX(5%);
+	        transform: translateX(5%);
 }
 .buttons div:last-child{
 	margin-right: 0;
 }
 /* Main */
 main{
-	background-color: rgba(255,255,255, 0.3);
+	background-color: rgba(255,255,255, 0.4);
+}
+main ul{
+	padding-top: 2.5%;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+}
+main li{
+	width: 45%;
+	margin-left: 3.3%;
+	margin-bottom: 2.5%;
+	border: 2px red solid;
 }
 /* Footer */
 footer{
@@ -190,6 +236,9 @@ footer{
     	font-size: 2.3em;
         font-size: 5vw;
     }
+	.buttons div{
+		font-size: 1em;
+	}
 }
 
 @media screen and (max-width: 767px){
@@ -211,6 +260,9 @@ footer{
         font-size: 1.4em;
         font-size: 7vw;
     }
+    .search{
+		margin: 1em 0;
+	}
 	.buttons{
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
@@ -220,11 +272,20 @@ footer{
 	.buttons div{
 		margin: 0;
 	}
-    .buttons div:hover{
+    .buttons div:hover, .buttons .active{
     	-webkit-box-flex: 1;
     	    -ms-flex: 1;
     	        flex: 1;
     }
+    .buttons .active{
+    	-webkit-box-ordinal-group: 5;
+    	    -ms-flex-order: 4;
+    	        order: 4;
+    }
+	.buttons div span{
+	position: static;
+	opacity: 1;
+	}
     footer{
     	font-size: 0.6em;
     }
