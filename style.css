@@ -60,7 +60,7 @@ body,html{
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body{
-	background: rgb(70, 104, 145) url(img/background_buildings.png) center;
+	background: rgb(70, 104, 145) url(img/background_buildings.png) center no-repeat;
 	background-size: cover;
 }
 body::before{
@@ -249,6 +249,19 @@ footer{
         font-size: 2em;
         font-size: 6vw;
     }
+	main ul{
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+	}
+	main li{
+		width: 90%;
+		margin-left: 0;
+	}
 }
 
 @media screen and (max-width: 480px){
@@ -276,6 +289,9 @@ footer{
     	-webkit-box-flex: 1;
     	    -ms-flex: 1;
     	        flex: 1;
+    }
+    .buttons div:hover{
+    	background-color: #6262d0;
     }
     .buttons .active{
     	-webkit-box-ordinal-group: 5;
