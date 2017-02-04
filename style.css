@@ -101,7 +101,9 @@ h1{
 	font-size: 4vw;
 	color: #5629ab;
 	text-shadow: 0 0 20px #e2e2e2;
-	width: 85%;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1 1 85%;
+	        flex: 1 1 85%;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -110,16 +112,21 @@ h1{
 	justify-content: center;
 }
 .logo{
-	width: calc(15% - 2em);
-	margin-left: 2em;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1 1 15%;
+	        flex: 1 1 15%;;
+	margin-left: 0;
 }
 .logo img{
 	max-width: 100%;
+	margin-left: 2em;
 }
 
 	/* Search input*/
 .search, .buttons{
-	width: 100%;
+	-webkit-box-flex:1;
+	    -ms-flex:1 1 100%;
+	        flex:1 1 100%;
 }
 .search{
 	margin: 2em 0;
@@ -181,7 +188,6 @@ input:-ms-input-placeholder {text-overflow:ellipsis;}
 	transition: transform 0.5s, -webkit-transform 0.5s;
 }
 .buttons div:hover{
-	background-color: rgba(255,255,255, 0.4);
 	color: #5629ab;
 	font-weight: bold;
 	text-shadow: 0 0 20px #e2e2e2;
@@ -213,12 +219,13 @@ main ul{
 	padding-top: 2.5%;
 	-webkit-box-pack: start;
 	    -ms-flex-pack: start;
-	        justify-content: flex-start;
+	justify-content: flex-start;
 	-ms-flex-wrap: wrap;
 	    flex-wrap: wrap;
 }
 main li{
-	width: 45%;
+	-ms-flex-preferred-size: 45%;
+	    flex-basis: 45%;
 	margin-left: 3.3%;
 	margin-bottom: 2.5%;
 	border: 2px red solid;
@@ -249,18 +256,11 @@ footer{
         font-size: 2em;
         font-size: 6vw;
     }
-	main ul{
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		    -ms-flex-direction: column;
-		        flex-direction: column;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
-	}
 	main li{
-		width: 90%;
-		margin-left: 0;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1 1 100%;
+		        flex: 1 1 100%;
+		margin-right: 3.3% ;
 	}
 }
 
@@ -269,7 +269,9 @@ footer{
 		display: none;
 	}
 	h1 {
-		width: 100%;
+		-webkit-box-flex: 1;
+		    -ms-flex: 1 1 100%;
+		        flex: 1 1 100%;
         font-size: 1.4em;
         font-size: 7vw;
     }
@@ -289,9 +291,6 @@ footer{
     	-webkit-box-flex: 1;
     	    -ms-flex: 1;
     	        flex: 1;
-    }
-    .buttons div:hover{
-    	background-color: #6262d0;
     }
     .buttons .active{
     	-webkit-box-ordinal-group: 5;
