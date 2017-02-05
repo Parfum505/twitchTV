@@ -46,33 +46,36 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 /* End Reset */
+
 /* Box-sizing border-box */
 *, *:before, *:after{
 	box-sizing: border-box;
 }
 
-body,html{
+html{
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body{
-	background: rgb(70, 104, 145) url(img/background_buildings.png) center no-repeat;
+	// background: rgb(70, 104, 145) url(img/background_buildings.png) center no-repeat;
+	background: rgb(70, 104, 145) url(img/Fishermen-Resting.jpg) center no-repeat;
 	background-size: cover;
 }
 body::before{
 	content: "";
 	display: block;
-	z-index: -1;
-	position: absolute;
+	z-index: 3;
+	position: fixed;
 	width: 100%;
-	min-height: 100%;
+	height: 100%;
 	background-color: rgba(0,0,0,0.4);
 }
 .container{
+	position: relative;
+	z-index: 10;
 	width: 70%;
 	max-width: 980px;
 	margin: 0 auto;
@@ -89,6 +92,26 @@ body::before{
 }
 .shadow{
 	box-shadow: 2px 2px 7px rgba(0,0,0, 0.5);
+}
+	/* Video background*/
+.video_container{
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+video{
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	-webkit-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
 }
 /* Header */
 header{
@@ -148,11 +171,11 @@ h1{
 	min-width: 205px;
 	outline: 0;
 }
-	/* Styling placeholder*/
-::-webkit-input-placeholder {color: #656565;}
-::-moz-placeholder          {color: #656565;}/* Firefox 19+ */
-:-moz-placeholder           {color: #656565;}/* Firefox 18- */
-:-ms-input-placeholder{color: #656565;}
+	/* Styling placeholder */
+::-webkit-input-placeholder {color: #3E3E3E;}
+::-moz-placeholder          {color: #3E3E3E;} /*Firefox 19+ */
+:-moz-placeholder           {color: #3E3E3E;} /* Firefox 18- */
+:-ms-input-placeholder{color: #3E3E3E;}
 
 input[placeholder]          {text-overflow:ellipsis;}
 input::-moz-placeholder     {text-overflow:ellipsis;}
@@ -165,6 +188,7 @@ input:-ms-input-placeholder {text-overflow:ellipsis;}
 	-webkit-box-flex: 1;
 	    -ms-flex: 1;
 	        flex: 1;
+	padding: 1em; //for Firefoxe
 	padding: 3%;
 	margin-right: 0.3%;
 	background-color: #6262d0;
@@ -227,12 +251,17 @@ main li{
 	-ms-flex-preferred-size: 45%;
 	    flex-basis: 45%;
 	margin-left: 3.3%;
+	margin-bottom: 1em; //for Firefox;
 	margin-bottom: 2.5%;
 	border: 2px red solid;
 }
 /* Footer */
 footer{
+	position: relative;
+	z-index: 10;
 	margin-top: -23px;
+	padding: 0.5em 0;
+	font-size: 0.8em;
 }
 
 @media screen and (max-width: 991px){
