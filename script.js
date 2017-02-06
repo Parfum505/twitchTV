@@ -1,5 +1,67 @@
 (function () {
+	const users = [	"ESL_SC2",
+					"OgamingSC2",
+					"cretetion",
+					"freecodecamp",
+					"storbeck",
+					"comster404",
+					"brunofin",
+					"habathcx",
+					"RobotCaleb",
+					"noobs2ninjas"];
+
 	const buttons = document.querySelectorAll('.buttons div');
+	let ul = document.querySelector('main ul');
+
+	// this function creates userLi
+	function createdUserLiNode(user, data, requestType) {
+		let userStatus = requestType === 'channels' ? 'offline' : 'online' ;
+		let userLi = document.createElement('li');
+		let a = '';
+		a += '<a href="#">' + (data.display_name || user);
+		a += '</a>';
+		userLi.className = userStatus + " shadow";
+		userLi.innerHTML = a;
+		ul.appendChild(userLi);
+		console.log(data);
+	}
+
+	function requestUsers(user, requestType) {
+		const urlAPI = "https://cors-anywhere.herokuapp.com/https://wind-bow.gomix.me/twitch-api/";
+		let url = urlAPI + requestType + '/' + user + "/";
+
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+
+		request.onload = function() {
+			  if (request.status >= 200 && request.status < 400) {
+				    var data = JSON.parse(request.responseText);
+				if (requestType === 'channels') {
+					createdUserLiNode(user, data, requestType);
+					 // console.log(data);
+				} else if (requestType === 'streams'){
+				    if(data.stream !== null) {
+				    	createdUserLiNode(user, data.stream.channel, requestType);
+				    } else if(data.stream === null){
+				    	requestUsers(user, 'channels');
+					}
+				}
+			  } else {
+			  	var data = JSON.parse(request.responseText);
+			  	console.log(user + ": isn't here");
+			  	console.log(data);
+			  }
+			};
+		request.onerror = function() {
+		  // There was a connection error of some sort
+		};
+		request.send();
+	} //end of requestUser
+
+	//call request for each user in userList
+	function createUsersDOMList(users) {
+		users.forEach(user => requestUsers(user, 'streams'));
+	}
 
 	//fade in function for li(channels)
 	function fadeIn(className) {
@@ -16,6 +78,7 @@
 
 	}, 100);
 }
+
 	//fade out function for li(channels)
 function fadeOut(className) {
 	var items = document.querySelectorAll(className);
@@ -28,8 +91,6 @@ function fadeOut(className) {
 	}
 
 	function toggleClassActive() {
-		const list = document.querySelectorAll('ul li');
-
 			document.querySelector('.active').classList.remove('active');
 			if (document.querySelector('.channels')) {
 				document.querySelector('.channels').classList.remove('channels');
@@ -45,11 +106,26 @@ function fadeOut(className) {
 				fadeOut('.online');
 				fadeIn('.offline');
 			}
-			console.log(document.querySelectorAll('.online'));
+			// console.log(document.querySelectorAll('.online'));
 	}
 
+	function displayUsers() {
+		const inputText = new RegExp(this.value, 'gi');
+		const lists = document.querySelectorAll('main ul li');
+
+		fadeOut('.online, .offline');
+		lists.forEach(list => {
+			list.classList.remove('match');
+			if(list.innerText.match(inputText)) {
+				list.classList.add('match');
+			}
+		});
+		fadeIn('.match');
+	}
+
+	createUsersDOMList(users);
 	buttons.forEach(button => button.addEventListener('click', toggleClassActive, false));
 	buttons.forEach(button => button.addEventListener('transitionend', toggleClassChannels, false));
-
+	document.querySelector('.search input').addEventListener('keyup', displayUsers, false);
 
 })();
