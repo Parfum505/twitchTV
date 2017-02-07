@@ -18,9 +18,16 @@
 		let userStatus = requestType === 'channels' ? 'offline' : 'online' ;
 		let userLi = document.createElement('li');
 		let a = '';
-		a += '<a href="#">' + (data.display_name || user);
+		data.status = requestType === 'channels' ? 'offline' : data.status ;
+		if (data.error) {data.status = 'Channel does not exist'};
+		a += '<a target="_blank" href="' + data.url + '">';
+		a += '<div class="logoUser"><img src="' + (data.logo || "img/unknow-user.jpg")+ '" alt="logo ' + user + '"></div>';
+		a += '<span class="name">' + (data.display_name || user) + '</span>';
+		a += '<span>' + (data.status || '') + '</span>';;
 		a += '</a>';
 		userLi.className = userStatus + " shadow";
+		userLi.style.background = 'rgb(70, 104, 145) url(' + (data.profile_banner || "#")+ ') center no-repeat';
+		userLi.style.backgroundSize = 'cover';
 		userLi.innerHTML = a;
 		ul.appendChild(userLi);
 		console.log(data);
@@ -49,7 +56,7 @@
 			  } else {
 			  	var data = JSON.parse(request.responseText);
 			  	console.log(user + ": isn't here");
-			  	console.log(data);
+			  	// console.log(data);
 			  }
 			};
 		request.onerror = function() {
