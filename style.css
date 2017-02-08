@@ -242,14 +242,14 @@ main ul{
 	padding-top: 2.5%;
 	-webkit-box-pack: start;
 	    -ms-flex-pack: start;
-	justify-content: flex-start;
+	justify-content: space-around;
 	-ms-flex-wrap: wrap;
 	    flex-wrap: wrap;
 }
 main li{
 	-ms-flex-preferred-size: 45%;
 	    flex-basis: 45%;
-	margin-left: 3.3%;
+	/*margin-left: 2.9%;*/
 	margin-bottom: 1.2em;
 	border-radius: 10px;
 	padding: 0.5em;
@@ -283,6 +283,10 @@ main li a{
 	z-index: 15;
 	height: 100%;
 }
+main li a:hover img{
+	-webkit-transform: scale(1.08);
+	        transform: scale(1.08);
+}
 main .logoUser{
 	-ms-flex-preferred-size: 15%;
 	    flex-basis: 15%;
@@ -293,6 +297,8 @@ main li img{
 	height:auto;
 	border-radius: 5px;
 	box-shadow: 0 0 15px #6262d0;
+	-webkit-transition: all 0.4s;
+	transition: all 0.4s;
 }
 main li.offline img{
 	box-shadow: 0 0 15px red;
@@ -355,6 +361,7 @@ footer{
 		    -ms-flex: 1 1 100%;
 		        flex: 1 1 100%;
 		margin-right: 3.3% ;
+		margin-left: 3.3% ;
 	}
 }
 

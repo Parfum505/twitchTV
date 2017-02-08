@@ -35,14 +35,18 @@
 
 	function requestUsers(user, requestType) {
 		const urlAPI = "https://cors-anywhere.herokuapp.com/https://wind-bow.gomix.me/twitch-api/";
-		let url = urlAPI + requestType + '/' + user + "/";
+		let url = urlAPI + requestType + '/' + user + "?callback=?";
 
 		var request = new XMLHttpRequest();
 		request.open('GET', url, true);
 
 		request.onload = function() {
 			  if (request.status >= 200 && request.status < 400) {
-				    var data = JSON.parse(request.responseText);
+			  	let dataRespons = request.responseText;
+			  	// console.log(typeof dataRespons);
+			  	dataRespons = dataRespons.substring(32, dataRespons.length - 2);
+			  	// console.log(dataRespons);
+				let data = JSON.parse(dataRespons);
 				if (requestType === 'channels') {
 					createdUserLiNode(user, data, requestType);
 					 // console.log(data);
@@ -77,13 +81,13 @@
 	items.forEach(item => item.style.opacity = 0);
 	items.forEach(item => item.style.display = 'block');
 	var fadeOutHandler = setInterval(function() {
-		opacity += 0.1;
+		opacity += 0.2;
 		if (opacity > 1) {
 			clearInterval(fadeOutHandler);
 			// items.forEach(item => item.style.opacity = 1);
 		} else	items.forEach(item => item.style.opacity = opacity);
 
-	}, 100);
+	}, 50);
 }
 
 	//fade out function for li(channels)
