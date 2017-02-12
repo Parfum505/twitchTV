@@ -98,7 +98,7 @@
 		userLi.style.backgroundSize = 'cover';
 		userLi.innerHTML = a;
 		ul.appendChild(userLi);
-		console.log(data);
+		// console.log(data);
 	}
 
 	function requestUsers(user, requestType) {
@@ -201,13 +201,13 @@
 
 	function displayUsers() {
 		var inputText = new RegExp(this.value, 'gi');
-		var lists = document.querySelectorAll('main ul li');
-
+		var lists = document.querySelectorAll('main ul li a');
+		// console.log(lists);
 		fadeOut('.online, .offline');
 		lists.forEach(function (list) {
-			list.classList.remove('match');
-			if (list.innerText.match(inputText)) {
-				list.classList.add('match');
+			list.parentNode.classList.remove('match');
+			if (list.childNodes[1].innerText.match(inputText)) {
+				list.parentNode.classList.add('match');
 			}
 		});
 		fadeIn('.match');

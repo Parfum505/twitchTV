@@ -30,7 +30,7 @@
 		userLi.style.backgroundSize = 'cover';
 		userLi.innerHTML = a;
 		ul.appendChild(userLi);
-		console.log(data);
+		// console.log(data);
 	}
 
 	function requestUsers(user, requestType) {
@@ -122,13 +122,13 @@ function fadeOut(className) {
 
 	function displayUsers() {
 		const inputText = new RegExp(this.value, 'gi');
-		const lists = document.querySelectorAll('main ul li');
-
+		const lists = document.querySelectorAll('main ul li a');
+		// console.log(lists);
 		fadeOut('.online, .offline');
 		lists.forEach(list => {
-			list.classList.remove('match');
-			if(list.innerText.match(inputText)) {
-				list.classList.add('match');
+			list.parentNode.classList.remove('match');
+			if(list.childNodes[1].innerText.match(inputText)) {
+				list.parentNode.classList.add('match');
 			}
 		});
 		fadeIn('.match');
