@@ -1,0 +1,31 @@
+{
+  "name": "twitch_tv",
+  "version": "1.0.0",
+  "description": "Twitch TV Channel Tracker is a project for FreeCodeCamp.\r I built this app. to study how to use the Twitch.tv JSON API.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "babel": {
+    "presets": ["es2015"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parfum505/twitchTV.git"
+  },
+  "author": "Pavlo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parfum505/twitchTV/issues"
+  },
+  "homepage": "https://github.com/Parfum505/twitchTV#readme",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  }
+}
