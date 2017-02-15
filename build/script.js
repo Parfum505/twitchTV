@@ -220,6 +220,7 @@
 	buttons.forEach(function (button) {
 		return button.addEventListener('transitionend', toggleClassChannels, false);
 	});
+
 	document.querySelector('.search input').addEventListener('keyup', displayUsers, false);
 })();
 

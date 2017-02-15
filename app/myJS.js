@@ -137,6 +137,8 @@ function fadeOut(className) {
 	createUsersDOMList(users);
 	buttons.forEach(button => button.addEventListener('click', toggleClassActive, false));
 	buttons.forEach(button => button.addEventListener('transitionend', toggleClassChannels, false));
+
+
 	document.querySelector('.search input').addEventListener('keyup', displayUsers, false);
 
 })();
